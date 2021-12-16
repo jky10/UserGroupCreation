@@ -1,0 +1,9 @@
+#!/bin/bash
+read -p "Enter group name to add: " group
+   if grep -q $group /etc/group
+    then
+         echo "ERROR! Group exists. Try again."
+    else
+         echo "Group name does not exist. Adding group to /etc/group"
+         groupadd $group
+    fi
