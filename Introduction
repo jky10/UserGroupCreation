@@ -1,0 +1,3 @@
+This script creates new group and new user and detects if there are duplicates. If user/group does not currently exist, it's added to /etc/group and /etc/passwd. 
+User created is a member of new group created. Home directory is createdd and files are copied from /etc/skel to newly created home directory (home/$user).
+Ownership of the home directory is transferred to newly created user. User is given full permission for home directory.
