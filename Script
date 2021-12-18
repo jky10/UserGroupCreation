@@ -1,0 +1,27 @@
+#!/bin/bash
+VAR=true
+while $VAR;
+do read -p "Enter group name to add: " group
+   if grep -q $group /etc/group
+    then
+         echo "ERROR! Group exists. Try again."
+    else
+         echo "Group name does not exist. Adding group to /etc/group"
+         groupadd $group
+read -p "Enter username to add: " user
+   if grep -q $user /etc/passwd
+    then
+         echo "ERROR! Username exists. Try again."
+    else
+         echo "Username does not exist. Adding username to directory."
+         adduser $user
+         passwd $user
+         sudo usermod -g $group $user 
+         sudo chown $user /home/$user  
+         chmod 755 /home/$user
+         echo "Success! User was created and added to $group ."
+          VAR=false
+    fi
+    fi
+
+done
